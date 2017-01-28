@@ -18,7 +18,15 @@ module.exports = {
     product.id = ++max;
     products.push(product);
   },
-  edit: (product) => {
-
+  edit: (product, val) => {
+    products.forEach( (elem) => {
+      if (elem.id === product[0].id){
+        elem.name = val;
+      }
+    })
+  },
+  delete: (id) => {
+    const index = products.indexOf(products.id);
+    products.splice(index,1);
   }
 }

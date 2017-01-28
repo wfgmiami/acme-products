@@ -16,10 +16,8 @@ router.get('/:id/edit', (req,res,next)=>{
 })
 
 router.delete('/:id', (req, res, next)=>{
-  const id = req.params.id;
-  const product = db.getProduct(id*1);
-  const index = db.products.indexOf(product);
-  db.products.splice(index,1);
+  const id = req.params.id*1;
+  db.delete(id);
   res.redirect('/products');
 })
 
@@ -32,7 +30,11 @@ router.post('/', (req,res,next)=>{
   res.redirect('/products');
 })
 
-router.put('/', (req,res,next)=>{
-  console.log('get hit');
+router.put('/:id', (req,res,next)=>{
+  const id = req.params.id*1;
+  const newValue = req.body.name;
+  const product = db.getProduct(id);
+  db.edit(product, newValue);
+  res.redirect('/products');
 })
 module.exports = router;
