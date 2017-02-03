@@ -12,13 +12,14 @@ app.set('view engine', 'html');
 app.engine('html', swig.renderFile);
 
 
-app.get('/', (req, res, next)=>{
-  res.render('index');
-})
+app.get('/', (req, res, next)=> res.render('index') );
+
 
 app.use('/products', require('./products.routes'))
 
 const port = process.env.PORT;
+
+//this could also be on one line..
 app.listen(port, ()=>{
 console.log(`Listening on port ${port}`);
 });
