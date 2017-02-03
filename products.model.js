@@ -6,8 +6,9 @@ const products = [
 
 module.exports = {
   products: products,
-  getProduct:(id) => products.filter( item => item.id === id*1),
+  getProduct:(id) => products.filter( item => item.id === id*1),//this is returning a collection - have it return one product
   add: (product) => {
+    //pull this logic out... create a method called nextId() or something-- you don't have to export it.
     let max = products.reduce( (max, elem)=> {
       if (elem.id > max){
         max = elem.id;
@@ -19,9 +20,12 @@ module.exports = {
     products.push(product);
   },
   edit: (product, val) => {
+    //is product a collection of products?
+    //you really should only need to send the id and updated product
+    //naming - call elem _product.. because it's a product :)
     products.forEach( (elem) => {
       if (elem.id === product[0].id){
-        elem.name = val;
+        elem.name = val;//
       }
     })
   },
