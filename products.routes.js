@@ -3,6 +3,7 @@ const db = require('./products.model');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 
+//if you are using methodOverride or body parser you are probably going to use it for the entire application
 router.use(methodOverride('_method'));
 router.use(bodyParser.urlencoded({ extended: false}));
 
@@ -32,7 +33,7 @@ router.post('/', (req,res,next)=>{
 
 router.put('/:id', (req,res,next)=>{
   const id = req.params.id*1;
-  const newValue = req.body.name;
+  const newValue = req.body.name;//what if you were updating more than the name?
   const product = db.getProduct(id);
   db.edit(product, newValue);
   res.redirect('/products');
