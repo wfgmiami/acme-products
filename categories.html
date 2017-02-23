@@ -1,0 +1,27 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<h3>All Categories</h3>
+
+<div class = "well" >
+  <form action = "/categories" method = "POST">
+    <input  class = "form-control" style = "display: block"  name = "name"/>
+    <br/>
+    <button class="btn btn-primary" type="submit">Save</button>     
+  </form>
+  </div>
+
+<ul class = "list-group">
+  
+  {% for cat in cats %}
+  <li class = "list-group-item"><a href = "/categories/{{ cat.id }}">{{ cat.name }}</a>
+      <form action = "/categories/{{ cat.id }}?_method=DELETE" method="POST">
+        <button type="submit" class = "btn btn-default pull-right">Delete</button>
+      </form>
+      <br clear="both">
+  </li>
+  {% endfor %}
+  
+</ul>
+
+{% endblock %}
