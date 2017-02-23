@@ -1,0 +1,26 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<h3>Category: {{ cat.name }}</h3>
+<a href = "/categories"><span class = "glyphicon glyphicon-menu-left"></span>All Categories</a>
+<div class = "well">
+  <form class = "form-group" action = "/categories/{{ cat.id }}/products" method = "POST">
+    <input class = "form-control" placeholder = "Add a product" name = "name"/>
+    <br/>
+    <button type = "btn btn-default">Save</button>
+  </form>
+  
+</div>
+
+ <ul class = "list-group">
+{% for prod in cat.products %}
+   <li class = "list-group-item">{{ prod.name }}
+    <form action="/categories/{{ cat.id }}/products/{{ prod.id }}?_method=DELETE" method="POST">
+      <button class = "btn btn-default pull-right">Delete</button>
+    </form>
+     <br clear = "both">
+   </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
